@@ -32,4 +32,20 @@ describe('Testes da função getOpeningHours', () => {
     const expected = 'The zoo is closed';
     expect(actual).toEqual(expected);
   });
+
+  it('Retorna "The day must be valid. Example: Monday" quando parâmetro é "Thu e 09:00-AM"', () => {
+    expect(() => getOpeningHours('Thu', '09:00-AM')).toThrow('The day must be valid. Example: Monday');
+  });
+
+  it('Retorna "The abbreviation must be \'AM\' or \'PM\'" quando parâmetro é "Friday e 09:00-ZM"', () => {
+    expect(() => getOpeningHours('Friday', '09:00-ZM')).toThrow('The abbreviation must be \'AM\' or \'PM\'');
+  });
+
+  it('Retorna "The hour should represent a number" quando parâmetro é "Saturday e C9:00-AM', () => {
+    expect(() => getOpeningHours('Saturday', 'C9:00-AM')).toThrow('The hour should represent a number');
+  });
+
+  it('Retorna "The minutes should represent a number" quando parâmetro é "Sunday e 09:c0-AM', () => {
+    expect(() => getOpeningHours('Sunday', '09:c0-AM')).toThrow('The minutes should represent a number');
+  });
 });
