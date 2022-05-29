@@ -30,4 +30,14 @@ describe('Testes da função HandlerElephants', () => {
     const actual = handlerElephants('availability');
     expect(expected).toStrictEqual(actual);
   });
+
+  it('Retorna "undefined" se não for passado parâmetro', () => {
+    expect(handlerElephants()).toBeUndefined();
+  });
+
+  it('handlerElephants deve retornar "Parâmetro inválido, é necessário uma string" quando o parâmetro passado não for uma string', () => {
+    const actual = handlerElephants(3);
+    const expected = 'Parâmetro inválido, é necessário uma string';
+    expect(actual).toBe(expected);
+  });
 });
